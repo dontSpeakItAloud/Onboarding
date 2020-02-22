@@ -11,8 +11,8 @@ import SnapKit
 import UIKit
 
 class LoginContainerView: UIView {
-    weak var navigation: NavigationService?
-    
+
+    // MARK:- UI Components
     private lazy var signInWithApple: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -50,6 +50,10 @@ class LoginContainerView: UIView {
         return label
     }()
     
+    // MARK:- Actions
+    var onOtherSignInAction: (() -> ())?
+    
+    // MARK:- Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         initialSetup()
@@ -60,6 +64,7 @@ class LoginContainerView: UIView {
         initialSetup()
     }
     
+    // MARK:- Initial setup
     private func initialSetup() {
         addSubviews()
         addSelectors()
@@ -77,7 +82,7 @@ class LoginContainerView: UIView {
         
         addSubview(otherSignIn)
         otherSignIn.snp.makeConstraints { make in
-            make.top.equalTo(signInWithApple.snp.bottom).offset(15)
+            make.top.equalTo(signInWithApple.snp.bottom).offset(20)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.width.equalTo(230)
@@ -86,7 +91,7 @@ class LoginContainerView: UIView {
         
         addSubview(stayAnonymously)
         stayAnonymously.snp.makeConstraints { make in
-            make.top.equalTo(otherSignIn.snp.bottom).offset(15)
+            make.top.equalTo(otherSignIn.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.height.equalTo(12)
         }
@@ -100,15 +105,16 @@ class LoginContainerView: UIView {
         stayAnonymously.addGestureRecognizer(anonGesture)
     }
     
+    // MARK:- Selectors
     @objc func onSignInWithAppleTapped() {
-        navigation?.signInWithApple()
+//        navigation?.signInWithApple()
     }
     
     @objc func onOtherSignInTapped() {
-        navigation?.presentSignInOptions()
+        onOtherSignInAction?()
     }
     
     @objc func onStayAnonymouslyTapped() {
-        navigation?.signInAnonymously()
+//        navigation?.signInAnonymously()
     }
 }

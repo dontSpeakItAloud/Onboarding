@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NavigationService: class {
-    func presentSignInOptions()
+    func presentSignInOptions(from: UIViewController)
     func signInWithApple()
     func signInAnonymously()
 }

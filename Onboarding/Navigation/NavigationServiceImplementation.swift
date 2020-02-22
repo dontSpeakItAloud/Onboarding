@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 class NavigationServiceImplementation: NavigationService {
-    func presentSignInOptions() {
-        print("Present other login options")
+    func presentSignInOptions(from: UIViewController) {
+        let controller = EmailLoginContainer()
+        from.present(controller, animated: true)
     }
     
     func signInWithApple() {

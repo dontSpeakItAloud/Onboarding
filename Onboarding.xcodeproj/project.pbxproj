@@ -21,8 +21,11 @@
 		22D548C223E74463003167F8 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C123E74463003167F8 /* ServiceProvider.swift */; };
 		22D548C423E74476003167F8 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C323E74476003167F8 /* NavigationService.swift */; };
 		22D548C623E745CD003167F8 /* NavigationServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C523E745CD003167F8 /* NavigationServiceImplementation.swift */; };
-		38B173D499CA67EFF35E8F87 /* Pods_Onboarding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D7D00A90361252171B6373 /* Pods_Onboarding.framework */; };
-		BABDC70509AD295B024A5108 /* Pods_OnboardingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DC167FCA4AF63ADB2D61BC /* Pods_OnboardingTests.framework */; };
+		22FB881823FF2D3D00E54C7D /* EmailLoginContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */; };
+		22FB881A23FF32A300E54C7D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881923FF32A300E54C7D /* UITextField.swift */; };
+		22FB881C2400992700E54C7D /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881B2400992700E54C7D /* LoginTextField.swift */; };
+		99D3A1929A5A39DCACE3B08C /* libPods-Onboarding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 890DECFF3CB2193C8DA9D19A /* libPods-Onboarding.a */; };
+		FB8A30932813E0FBF89837C4 /* libPods-OnboardingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B53BCDF85A30D3CD521C4FE /* libPods-OnboardingTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,7 @@
 		005DE5A02665AD6492BF6A63 /* Pods-OnboardingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingTests.release.xcconfig"; path = "Target Support Files/Pods-OnboardingTests/Pods-OnboardingTests.release.xcconfig"; sourceTree = "<group>"; };
 		12810368597A13FA0F56FF89 /* Pods-OnboardingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingTests.debug.xcconfig"; path = "Target Support Files/Pods-OnboardingTests/Pods-OnboardingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		18832888CD99BD48D1A2244E /* Pods-Onboarding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onboarding.release.xcconfig"; path = "Target Support Files/Pods-Onboarding/Pods-Onboarding.release.xcconfig"; sourceTree = "<group>"; };
+		1B53BCDF85A30D3CD521C4FE /* libPods-OnboardingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnboardingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		220A5DC723E7494A00E87704 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		220A5DC923E74B8600E87704 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		220A5DCC23E7520100E87704 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
@@ -57,9 +61,11 @@
 		22D548C123E74463003167F8 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		22D548C323E74476003167F8 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		22D548C523E745CD003167F8 /* NavigationServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceImplementation.swift; sourceTree = "<group>"; };
-		33DC167FCA4AF63ADB2D61BC /* Pods_OnboardingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnboardingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginContainer.swift; sourceTree = "<group>"; };
+		22FB881923FF32A300E54C7D /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		22FB881B2400992700E54C7D /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		7BE2105CBF1EE9C439A3A7DC /* Pods-Onboarding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onboarding.debug.xcconfig"; path = "Target Support Files/Pods-Onboarding/Pods-Onboarding.debug.xcconfig"; sourceTree = "<group>"; };
-		E3D7D00A90361252171B6373 /* Pods_Onboarding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Onboarding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		890DECFF3CB2193C8DA9D19A /* libPods-Onboarding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Onboarding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B173D499CA67EFF35E8F87 /* Pods_Onboarding.framework in Frameworks */,
+				99D3A1929A5A39DCACE3B08C /* libPods-Onboarding.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BABDC70509AD295B024A5108 /* Pods_OnboardingTests.framework in Frameworks */,
+				FB8A30932813E0FBF89837C4 /* libPods-OnboardingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +93,7 @@
 			children = (
 				220A5DC723E7494A00E87704 /* UIFont.swift */,
 				220A5DC923E74B8600E87704 /* UIColor.swift */,
+				22FB881923FF32A300E54C7D /* UITextField.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -96,6 +103,8 @@
 			children = (
 				220A5DCC23E7520100E87704 /* HeaderLabel.swift */,
 				220A5DCE23E7541A00E87704 /* LoginContainerView.swift */,
+				22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */,
+				22FB881B2400992700E54C7D /* LoginTextField.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -234,8 +243,8 @@
 		83655C42DA5CC0C85E9103E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E3D7D00A90361252171B6373 /* Pods_Onboarding.framework */,
-				33DC167FCA4AF63ADB2D61BC /* Pods_OnboardingTests.framework */,
+				890DECFF3CB2193C8DA9D19A /* libPods-Onboarding.a */,
+				1B53BCDF85A30D3CD521C4FE /* libPods-OnboardingTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,7 +260,7 @@
 				22D5488D23E73247003167F8 /* Sources */,
 				22D5488E23E73247003167F8 /* Frameworks */,
 				22D5488F23E73247003167F8 /* Resources */,
-				FB803D7C0338079729FEC897 /* [CP] Embed Pods Frameworks */,
+				88E8C351D69167DCE9F30037 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,6 +371,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		88E8C351D69167DCE9F30037 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B54E684299F0697AC86B2446 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -384,23 +410,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB803D7C0338079729FEC897 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Onboarding/Pods-Onboarding-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -410,7 +419,10 @@
 			files = (
 				22D548C423E74476003167F8 /* NavigationService.swift in Sources */,
 				22D548C623E745CD003167F8 /* NavigationServiceImplementation.swift in Sources */,
+				22FB881823FF2D3D00E54C7D /* EmailLoginContainer.swift in Sources */,
+				22FB881C2400992700E54C7D /* LoginTextField.swift in Sources */,
 				220A5DCF23E7541A00E87704 /* LoginContainerView.swift in Sources */,
+				22FB881A23FF32A300E54C7D /* UITextField.swift in Sources */,
 				22D548C223E74463003167F8 /* ServiceProvider.swift in Sources */,
 				220A5DC823E7494A00E87704 /* UIFont.swift in Sources */,
 				22D5489923E73247003167F8 /* LoginViewController.swift in Sources */,
