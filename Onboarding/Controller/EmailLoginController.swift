@@ -13,13 +13,6 @@ import SnapKit
 class EmailLoginController: UIViewController {
     
     // MARK:- UI Components
-//    private lazy var view: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .mainBackgroundColor
-//        view.layer.cornerRadius = 15
-//        return view
-//    }()
-    
     private lazy var writeEmailLabel: UILabel = {
         let label = UILabel()
         label.text = "write your email".uppercased()
