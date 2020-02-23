@@ -1,5 +1,5 @@
 //
-//  EmailLoginContainer.swift
+//  EmailLoginController.swift
 //  Onboarding
 //
 //  Created by Rodion Kuskov on 2/20/20.
@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 import SnapKit
 
-class EmailLoginContainer: UIViewController {
+class EmailLoginController: UIViewController {
     
     // MARK:- UI Components
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .mainBackgroundColor
-        view.layer.cornerRadius = 15
-        return view
-    }()
+//    private lazy var view: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .mainBackgroundColor
+//        view.layer.cornerRadius = 15
+//        return view
+//    }()
     
     private lazy var writeEmailLabel: UILabel = {
         let label = UILabel()
         label.text = "write your email".uppercased()
-        label.font = .avenirRegular(size: 23)
+        label.font = .avenirRegular(size: 24)
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return label
     }()
@@ -31,7 +31,7 @@ class EmailLoginContainer: UIViewController {
     private lazy var belowLabel: UILabel = {
         let label = UILabel()
         label.text = "below".uppercased()
-        label.font = .avenirDemiBold(size: 45)
+        label.font = .avenirDemiBold(size: 46)
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return label
     }()
@@ -39,12 +39,14 @@ class EmailLoginContainer: UIViewController {
     private lazy var emailTextField: LoginTextField = {
         let field = LoginTextField()
         field.configure(with: .email)
+        field.addTarget(self, action: #selector(validateUserInput), for: .editingChanged)
         return field
     }()
     
     private lazy var passowrdTextField: LoginTextField = {
         let field = LoginTextField()
         field.configure(with: .password)
+        field.addTarget(self, action: #selector(validateUserInput), for: .editingChanged)
         return field
     }()
     
@@ -61,8 +63,10 @@ class EmailLoginContainer: UIViewController {
         button.isEnabled = false
         button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.layer.cornerRadius = 5
+        button.isUserInteractionEnabled = false
         button.setTitle("Sign in", for: .normal)
         button.titleLabel?.font = .systemMedium(size: 14.5)
+        button.setTitleColor(.mainBackgroundColor, for: .normal)
         button.setTitleColor(UIColor.mainBackgroundColor.withAlphaComponent(0.6), for: .disabled)
         button.addTarget(self, action: #selector(onSignInAction), for: .touchUpInside)
         return button
@@ -90,68 +94,64 @@ class EmailLoginContainer: UIViewController {
     private func configure() {
         addSubviews()
         addGestures()
-        view.backgroundColor = .clear
+        view.backgroundColor = .mainBackgroundColor
     }
     
     private func addGestures() {
+        let dismissGesture = UITapGestureRecognizer(target: self, action: #selector(onDismissKeyboard))
+        view.addGestureRecognizer(dismissGesture)
+        
         let forgotPasswordGesture = UITapGestureRecognizer(target: self, action: #selector(onForgotPasswordAction))
         forgotPasswordLabel.addGestureRecognizer(forgotPasswordGesture)
     }
     
     private func addSubviews() {
-        view.addSubview(containerView)
-        containerView.snp.makeConstraints { make in
-            make.height.equalTo(view.snp.height).dividedBy(1.5)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-        }
-        
-        containerView.addSubview(writeEmailLabel)
+        view.addSubview(writeEmailLabel)
         writeEmailLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(30)
+            make.top.equalTo(view.snp.top).offset(50)
             make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview()
             make.height.equalTo(30)
         }
         
-        containerView.addSubview(belowLabel)
+        view.addSubview(belowLabel)
         belowLabel.snp.makeConstraints { make in
             make.top.equalTo(writeEmailLabel.snp.bottom)
             make.leading.equalTo(writeEmailLabel.snp.leading)
             make.height.equalTo(60)
         }
-        
-        containerView.addSubview(emailTextField)
+
+        view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(containerView.snp.centerY).offset(-30)
+            make.bottom.equalTo(view.snp.centerY).offset(-30)
             make.width.equalToSuperview().dividedBy(1.25)
             make.height.equalTo(40)
         }
-        
-        containerView.addSubview(passowrdTextField)
+
+        view.addSubview(passowrdTextField)
         passowrdTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(emailTextField.snp.bottom).offset(15)
             make.width.equalToSuperview().dividedBy(1.25)
             make.height.equalTo(40)
         }
-        
-        containerView.addSubview(willNotShareLabel)
+
+        view.addSubview(willNotShareLabel)
         willNotShareLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(passowrdTextField.snp.bottom).offset(5)
         }
-        
-        containerView.addSubview(signInButton)
+
+        view.addSubview(signInButton)
         signInButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(willNotShareLabel.snp.bottom).offset(40)
+            make.top.equalTo(willNotShareLabel.snp.bottom).offset(75)
             make.width.equalTo(210)
             make.height.equalTo(40)
         }
-        
-        containerView.addSubview(forgotPasswordLabel)
+
+        view.addSubview(forgotPasswordLabel)
         forgotPasswordLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(signInButton.snp.bottom).offset(15)
@@ -161,4 +161,16 @@ class EmailLoginContainer: UIViewController {
     // MARK:- Selectors
     @objc func onSignInAction() {}
     @objc func onForgotPasswordAction() {}
+    
+    @objc func onDismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    @objc func validateUserInput() {
+        let emailIsValid = EmailVerification.isValid(emailTextField.text)
+        let passwordIsValid = PasswordVerification.isValid(passowrdTextField.text)
+
+        signInButton.isEnabled = emailIsValid && passwordIsValid
+        signInButton.isUserInteractionEnabled = emailIsValid && passwordIsValid
+    }
 }

@@ -19,13 +19,11 @@ class LoginTextField: UITextField {
         if type == .email {
             placeholder = "example@email.com"
             keyboardType = .emailAddress
-            // TODO:- Add verification for email
 
         } else {
             placeholder = "password"
             isSecureTextEntry = true
             keyboardType = .default
-            // TODO:- Add verification for password
         }
 
         layer.cornerRadius = 5

@@ -21,9 +21,10 @@
 		22D548C223E74463003167F8 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C123E74463003167F8 /* ServiceProvider.swift */; };
 		22D548C423E74476003167F8 /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C323E74476003167F8 /* NavigationService.swift */; };
 		22D548C623E745CD003167F8 /* NavigationServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D548C523E745CD003167F8 /* NavigationServiceImplementation.swift */; };
-		22FB881823FF2D3D00E54C7D /* EmailLoginContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */; };
+		22FB881823FF2D3D00E54C7D /* EmailLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881723FF2D3D00E54C7D /* EmailLoginController.swift */; };
 		22FB881A23FF32A300E54C7D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881923FF32A300E54C7D /* UITextField.swift */; };
 		22FB881C2400992700E54C7D /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881B2400992700E54C7D /* LoginTextField.swift */; };
+		22FB881F2403041F00E54C7D /* CredentialVerifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FB881E2403041F00E54C7D /* CredentialVerifications.swift */; };
 		99D3A1929A5A39DCACE3B08C /* libPods-Onboarding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 890DECFF3CB2193C8DA9D19A /* libPods-Onboarding.a */; };
 		FB8A30932813E0FBF89837C4 /* libPods-OnboardingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B53BCDF85A30D3CD521C4FE /* libPods-OnboardingTests.a */; };
 /* End PBXBuildFile section */
@@ -61,9 +62,10 @@
 		22D548C123E74463003167F8 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		22D548C323E74476003167F8 /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		22D548C523E745CD003167F8 /* NavigationServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceImplementation.swift; sourceTree = "<group>"; };
-		22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginContainer.swift; sourceTree = "<group>"; };
+		22FB881723FF2D3D00E54C7D /* EmailLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginController.swift; sourceTree = "<group>"; };
 		22FB881923FF32A300E54C7D /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		22FB881B2400992700E54C7D /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		22FB881E2403041F00E54C7D /* CredentialVerifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialVerifications.swift; sourceTree = "<group>"; };
 		7BE2105CBF1EE9C439A3A7DC /* Pods-Onboarding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Onboarding.debug.xcconfig"; path = "Target Support Files/Pods-Onboarding/Pods-Onboarding.debug.xcconfig"; sourceTree = "<group>"; };
 		890DECFF3CB2193C8DA9D19A /* libPods-Onboarding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Onboarding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,7 +105,6 @@
 			children = (
 				220A5DCC23E7520100E87704 /* HeaderLabel.swift */,
 				220A5DCE23E7541A00E87704 /* LoginContainerView.swift */,
-				22FB881723FF2D3D00E54C7D /* EmailLoginContainer.swift */,
 				22FB881B2400992700E54C7D /* LoginTextField.swift */,
 			);
 			path = Login;
@@ -132,6 +133,7 @@
 		22D5489323E73247003167F8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				22FB881D2403040100E54C7D /* Utils */,
 				220A5DC623E7493F00E87704 /* Extension */,
 				22D548C023E74451003167F8 /* Service */,
 				22D548BF23E740D5003167F8 /* Protocol */,
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				22D5489823E73247003167F8 /* LoginViewController.swift */,
+				22FB881723FF2D3D00E54C7D /* EmailLoginController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,6 +230,14 @@
 				22D548C123E74463003167F8 /* ServiceProvider.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		22FB881D2403040100E54C7D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				22FB881E2403041F00E54C7D /* CredentialVerifications.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		29EA62560D82C08AF3A9285B /* Pods */ = {
@@ -419,11 +430,12 @@
 			files = (
 				22D548C423E74476003167F8 /* NavigationService.swift in Sources */,
 				22D548C623E745CD003167F8 /* NavigationServiceImplementation.swift in Sources */,
-				22FB881823FF2D3D00E54C7D /* EmailLoginContainer.swift in Sources */,
+				22FB881823FF2D3D00E54C7D /* EmailLoginController.swift in Sources */,
 				22FB881C2400992700E54C7D /* LoginTextField.swift in Sources */,
 				220A5DCF23E7541A00E87704 /* LoginContainerView.swift in Sources */,
 				22FB881A23FF32A300E54C7D /* UITextField.swift in Sources */,
 				22D548C223E74463003167F8 /* ServiceProvider.swift in Sources */,
+				22FB881F2403041F00E54C7D /* CredentialVerifications.swift in Sources */,
 				220A5DC823E7494A00E87704 /* UIFont.swift in Sources */,
 				22D5489923E73247003167F8 /* LoginViewController.swift in Sources */,
 				220A5DCA23E74B8600E87704 /* UIColor.swift in Sources */,

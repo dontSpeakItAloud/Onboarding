@@ -11,7 +11,7 @@ import UIKit
 
 class NavigationServiceImplementation: NavigationService {
     func presentSignInOptions(from: UIViewController) {
-        let controller = EmailLoginContainer()
+        let controller = EmailLoginController()
         from.present(controller, animated: true)
     }
     
