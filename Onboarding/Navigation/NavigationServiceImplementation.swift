@@ -22,4 +22,9 @@ class NavigationServiceImplementation: NavigationService {
     func signInAnonymously() {
         print("Stay anonymously")
     }
+    
+    func presentUsernameInput(from: UIViewController) {
+        let controller = UsernameViewController()
+        from.navigationController?.pushViewController(controller, animated: true)
+    }
 }

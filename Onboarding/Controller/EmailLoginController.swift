@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class EmailLoginController: UIViewController {
+class EmailLoginController: UIViewController, UITextFieldDelegate {
     
     // MARK:- UI Components
     private lazy var writeEmailLabel: UILabel = {
@@ -29,9 +29,16 @@ class EmailLoginController: UIViewController {
         return label
     }()
     
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private lazy var emailTextField: LoginTextField = {
         let field = LoginTextField()
         field.configure(with: .email)
+        field.delegate = self
         field.addTarget(self, action: #selector(validateUserInput), for: .editingChanged)
         return field
     }()
@@ -74,8 +81,13 @@ class EmailLoginController: UIViewController {
 
         let underlineAttributedString = NSAttributedString(string: "Forgot password?", attributes: underlineAttribute)
         label.attributedText = underlineAttributedString
+        label.textColor = .white
         return label
     }()
+    
+    // MARK:- Variables
+    var navigation: NavigationService?
+    private var keyboardHeight: CGFloat = 0
     
     // MARK:- Lifecycle
     override func viewDidLoad() {
@@ -83,11 +95,23 @@ class EmailLoginController: UIViewController {
         configure()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
+    }
+    
     // MARK:- Initial setup
     private func configure() {
         addSubviews()
         addGestures()
+        addObservers()
         view.backgroundColor = .mainBackgroundColor
+        emailTextField.becomeFirstResponder()
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func addGestures() {
@@ -114,45 +138,69 @@ class EmailLoginController: UIViewController {
             make.height.equalTo(60)
         }
 
-        view.addSubview(emailTextField)
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.centerY).offset(-60)
+            make.height.equalTo(280)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.25)
+        }
+        
+        containerView.addSubview(emailTextField)
         emailTextField.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.snp.centerY).offset(-30)
-            make.width.equalToSuperview().dividedBy(1.25)
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
 
-        view.addSubview(passowrdTextField)
+        containerView.addSubview(passowrdTextField)
         passowrdTextField.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalTo(emailTextField.snp.bottom).offset(15)
-            make.width.equalToSuperview().dividedBy(1.25)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
 
-        view.addSubview(willNotShareLabel)
+        containerView.addSubview(willNotShareLabel)
         willNotShareLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(passowrdTextField.snp.bottom).offset(5)
         }
-
-        view.addSubview(signInButton)
+        
+        containerView.addSubview(signInButton)
         signInButton.snp.makeConstraints { make in
+            make.top.equalTo(willNotShareLabel.snp.bottom).offset(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(willNotShareLabel.snp.bottom).offset(75)
-            make.width.equalTo(210)
+            make.width.equalTo(230)
             make.height.equalTo(40)
         }
-
-        view.addSubview(forgotPasswordLabel)
+        
+        containerView.addSubview(forgotPasswordLabel)
         forgotPasswordLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalTo(signInButton.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(85)
+            make.height.equalTo(25)
         }
     }
     
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func toggleVibration() {
+        let vibration = UINotificationFeedbackGenerator()
+        vibration.notificationOccurred(.success)
+    }
+    
     // MARK:- Selectors
-    @objc func onSignInAction() {}
+    @objc func onSignInAction() {
+        toggleVibration()
+        navigation?.presentUsernameInput(from: self)
+    }
+
     @objc func onForgotPasswordAction() {}
     
     @objc func onDismissKeyboard() {
@@ -165,5 +213,25 @@ class EmailLoginController: UIViewController {
 
         signInButton.isEnabled = emailIsValid && passwordIsValid
         signInButton.isUserInteractionEnabled = emailIsValid && passwordIsValid
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            keyboardHeight = keyboardFrame.cgRectValue.height
+            
+            if self.view.frame.origin.y == 0 {
+                containerView.frame.origin.y -= keyboardHeight / 3
+                signInButton.frame.origin.y -= 20
+                forgotPasswordLabel.frame.origin.y -= 20
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.5) {
+            self.containerView.frame.origin.y += self.keyboardHeight / 3
+            self.signInButton.frame.origin.y += 20
+            self.forgotPasswordLabel.frame.origin.y += 20
+        }
     }
 }

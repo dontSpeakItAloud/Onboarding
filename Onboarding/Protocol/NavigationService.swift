@@ -13,4 +13,5 @@ protocol NavigationService: class {
     func presentSignInOptions(from: UIViewController)
     func signInWithApple()
     func signInAnonymously()
+    func presentUsernameInput(from: UIViewController)
 }
