@@ -10,9 +10,13 @@ import Foundation
 import UIKit
 
 class NavigationServiceImplementation: NavigationService {
+
     func presentSignInOptions(from: UIViewController) {
-        let controller = EmailLoginController()
-        from.present(controller, animated: true)
+        let rootController = EmailLoginController()
+        rootController.navigation = self
+        let navigationController = UINavigationController(rootViewController: rootController)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        from.present(navigationController, animated: true)
     }
     
     func signInWithApple() {

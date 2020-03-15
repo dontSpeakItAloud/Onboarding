@@ -13,6 +13,11 @@ import SnapKit
 class EmailLoginController: UIViewController, UITextFieldDelegate {
     
     // MARK:- UI Components
+    private var onKeyboardShowConstraint = CGFloat()
+    private var keyboardHeight: CGFloat = 0
+    private var signInTopConstraint = NSLayoutConstraint()
+    private var containerTopConstraint = NSLayoutConstraint()
+
     private lazy var writeEmailLabel: UILabel = {
         let label = UILabel()
         label.text = "write your email".uppercased()
@@ -40,6 +45,8 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
         field.configure(with: .email)
         field.delegate = self
         field.addTarget(self, action: #selector(validateUserInput), for: .editingChanged)
+        field.delegate = self
+        field.becomeFirstResponder()
         return field
     }()
     
@@ -87,8 +94,8 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
     
     // MARK:- Variables
     var navigation: NavigationService?
-    private var keyboardHeight: CGFloat = 0
-    
+    private var isKeyboardHidden: Bool = true
+
     // MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +113,6 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
         addGestures()
         addObservers()
         view.backgroundColor = .mainBackgroundColor
-        emailTextField.becomeFirstResponder()
     }
     
     private func addObservers() {
@@ -139,8 +145,9 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
         }
 
         view.addSubview(containerView)
+        containerTopConstraint = containerView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -60)
         containerView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.centerY).offset(-60)
+            containerTopConstraint.isActive = true
             make.height.equalTo(280)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.25)
@@ -169,8 +176,9 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
         }
         
         containerView.addSubview(signInButton)
+        signInTopConstraint = signInButton.topAnchor.constraint(equalTo: willNotShareLabel.bottomAnchor, constant: 70)
         signInButton.snp.makeConstraints { make in
-            make.top.equalTo(willNotShareLabel.snp.bottom).offset(50)
+            signInTopConstraint.isActive = true
             make.centerX.equalToSuperview()
             make.width.equalTo(230)
             make.height.equalTo(40)
@@ -184,7 +192,7 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(25)
         }
     }
-    
+
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -216,22 +224,24 @@ class EmailLoginController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            keyboardHeight = keyboardFrame.cgRectValue.height
-            
-            if self.view.frame.origin.y == 0 {
-                containerView.frame.origin.y -= keyboardHeight / 3
-                signInButton.frame.origin.y -= 20
-                forgotPasswordLabel.frame.origin.y -= 20
+        UIScreen.isSmallScreen ? (onKeyboardShowConstraint = 40) : (onKeyboardShowConstraint = 0)
+        if isKeyboardHidden {
+            if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                keyboardHeight = keyboardFrame.cgRectValue.height
+                containerTopConstraint.constant -= keyboardHeight / 3
+                signInTopConstraint.constant -= onKeyboardShowConstraint
             }
+            
+            isKeyboardHidden = false
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.5) {
-            self.containerView.frame.origin.y += self.keyboardHeight / 3
-            self.signInButton.frame.origin.y += 20
-            self.forgotPasswordLabel.frame.origin.y += 20
+            self.containerTopConstraint.constant += self.keyboardHeight / 3
+            self.signInTopConstraint.constant += self.onKeyboardShowConstraint
         }
+        
+        self.isKeyboardHidden = true
     }
 }
